@@ -1,0 +1,1 @@
+# Homeassistant Automationen und Szenen
