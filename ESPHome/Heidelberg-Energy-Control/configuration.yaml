@@ -1,0 +1,22 @@
+
+template:
+  - sensor:
+    - name: "Wallbox Charging State"
+      state: >-
+          {% set cs = {
+          '2': 'Kein Fahrzeug verbunden, Wallbox verbietet Laden',
+          '3': 'Kein Fahrzeug verbunden, Wallbox erlaubt Laden',
+          '4': 'Fahrzeug verbunden, kein Ladevorgang, Wallbox verbietet Laden',
+          '5': 'Fahrzeug verbunden, kein Ladevorgang, Wallbox erlaubt Laden',
+          '6': 'Fahrzeug verbunden, Wallbox verbietet Laden',
+          '7': 'Fahrzeug verbunden, Laden',
+          '8': 'Reduktion der Ausgangsleistung',
+          '9': 'Fehler (9)',
+          '10': 'Wallbox gesperrt oder nicht bereit',
+          '11': 'Fehler (11)'
+          } %}
+          {% if states('sensor.heidelberg_wallbox_charging_state') in cs.keys() %}
+              {{ cs.get(states('sensor.heidelberg_wallbox_charging_state')) }}
+          {% else %}
+              Unknown
+          {% endif %}

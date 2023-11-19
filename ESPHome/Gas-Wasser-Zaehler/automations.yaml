@@ -1,0 +1,14 @@
+- id: gas_automation
+  alias: Gas Counting
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.gas_wasser_zaehler_gas_counter
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: counter.increment
+    target:
+      entity_id: counter.gas_counter
+  mode: single
