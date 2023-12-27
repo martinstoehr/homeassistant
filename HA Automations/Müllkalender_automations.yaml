@@ -1,0 +1,102 @@
+- id: '1702979617399'
+  alias: SZ Kalender Event Restmüll Tonne
+  description: ''
+  trigger:
+  - platform: calendar
+    event: start
+    offset: '-13:0:0'
+    entity_id: calendar.mullabfuhr_sz
+  condition:
+  - condition: template
+    value_template: '{{ ''Abfuhr Restmüll'' in trigger.calendar_event.summary }}'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+      rgb_color:
+      - 255
+      - 0
+      - 200
+    target:
+      device_id: 6f973a68c54730159b90b31f9312f254
+  mode: single
+- id: '1702979755818'
+  alias: SZ Kalender Event Gelber Sack
+  description: ''
+  trigger:
+  - platform: calendar
+    event: start
+    offset: '-13:0:0'
+    entity_id: calendar.mullabfuhr_sz
+  condition:
+  - condition: template
+    value_template: '{{ ''Abfuhr Gelber'' in trigger.calendar_event.summary }}'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+      rgb_color:
+      - 254
+      - 199
+      - 0
+    target:
+      device_id: 6f973a68c54730159b90b31f9312f254
+  mode: single
+- id: '1702979810310'
+  alias: SZ Kalender Event Blaue Tonne
+  description: ''
+  trigger:
+  - platform: calendar
+    event: start
+    offset: '-13:0:0'
+    entity_id: calendar.mullabfuhr_sz
+  condition:
+  - condition: template
+    value_template: '{{ ''Abfuhr Altpapier'' in trigger.calendar_event.summary }}'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+      rgb_color:
+      - 0
+      - 46
+      - 122
+    target:
+      device_id: 6f973a68c54730159b90b31f9312f254
+  mode: single
+- id: '1702979864453'
+  alias: SZ Kalender Event _reset
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id: 6f973a68c54730159b90b31f9312f254
+  mode: single
+- id: '1702982195609'
+  alias: SZ Kalender Event Weihnachtsbaum
+  description: ''
+  trigger:
+  - platform: calendar
+    event: start
+    offset: '-12:0:0'
+    entity_id: calendar.mullabfuhr_sz
+  condition:
+  - condition: template
+    value_template: '{{ ''Abfuhr Weihnachtsbaum'' in trigger.calendar_event.summary
+      }}'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+      rgb_color:
+      - 0
+      - 249
+      - 0
+    target:
+      device_id: 6f973a68c54730159b90b31f9312f254
+  mode: single
